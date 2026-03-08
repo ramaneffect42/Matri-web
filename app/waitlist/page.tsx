@@ -5,14 +5,19 @@ import { useAuth } from '@/lib/auth-context'
 import { Button } from '@/components/ui/button'
 import { Card, CardContent, CardHeader } from '@/components/ui/card'
 import { Badge } from '@/components/ui/badge'
-import { Heart, Lock, Baby, Brain, Share2, ArrowRight, CheckCircle2 } from 'lucide-react'
+import { Heart, Lock, Baby, Brain, Share2, ArrowRight, CheckCircle2, X, Mail } from 'lucide-react'
 import Link from 'next/link'
+import Image from 'next/image'
 import { useEffect, useState } from 'react'
 
 export default function WaitlistPage() {
-  const { user, logout } = useAuth()
+  const { user, logout, resendVerificationEmail } = useAuth()
   const router = useRouter()
   const [shareOpen, setShareOpen] = useState(false)
+  const [verificationDismissed, setVerificationDismissed] = useState(false)
+  const [resendLoading, setResendLoading] = useState(false)
+  const [resendMessage, setResendMessage] = useState('')
+  const [progressWidth, setProgressWidth] = useState(0)
 
   // Redirect to login if not authenticated
   useEffect(() => {
@@ -21,15 +26,39 @@ export default function WaitlistPage() {
     }
   }, [user, router])
 
+  // Animate progress bar on mount
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      setProgressWidth(81)
+    }, 100)
+    return () => clearTimeout(timer)
+  }, [])
+
   const handleCopyLink = () => {
     const url = `${typeof window !== 'undefined' ? window.location.origin : ''}/signup`
     navigator.clipboard.writeText(url)
     alert('Referral link copied!')
   }
 
+  const handleResendVerification = async () => {
+    setResendLoading(true)
+    setResendMessage('')
+    try {
+      await resendVerificationEmail()
+      setResendMessage('Verification email sent! Check your inbox.')
+    } catch (error) {
+      const errorMsg = error instanceof Error ? error.message : 'Failed to send verification email'
+      setResendMessage(errorMsg)
+    } finally {
+      setResendLoading(false)
+    }
+  }
+
   if (!user) {
     return null
   }
+
+  const isVerified = user.emailVerified
 
   const pillars = [
     {
@@ -51,6 +80,42 @@ export default function WaitlistPage() {
 
   return (
     <>
+      {/* Email Verification Banner */}
+      {!isVerified && !verificationDismissed && (
+        <div className="sticky top-0 z-50 bg-accent/10 border-b border-accent/30 backdrop-blur-md">
+          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-3 flex items-center justify-between gap-4">
+            <div className="flex items-center gap-3">
+              <Mail className="w-5 h-5 text-accent flex-shrink-0" />
+              <p className="text-sm text-foreground/80">
+                Hi {user.displayName?.split(' ')[0] || 'there'}, please verify your email to get full access to Matri features.
+              </p>
+            </div>
+            <div className="flex items-center gap-2">
+              <Button
+                onClick={handleResendVerification}
+                disabled={resendLoading}
+                variant="outline"
+                size="sm"
+                className="rounded-full whitespace-nowrap text-xs md:text-sm"
+              >
+                {resendLoading ? 'Sending...' : 'Resend Link'}
+              </Button>
+              <button
+                onClick={() => setVerificationDismissed(true)}
+                className="text-foreground/50 hover:text-foreground transition"
+              >
+                <X className="w-5 h-5" />
+              </button>
+            </div>
+          </div>
+          {resendMessage && (
+            <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-2 text-xs text-foreground/70 text-center">
+              {resendMessage}
+            </div>
+          )}
+        </div>
+      )}
+
       {/* Navigation */}
       <nav className="sticky top-0 z-40 bg-background/80 backdrop-blur-md border-b border-border/50">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4 flex items-center justify-between">
@@ -100,13 +165,27 @@ export default function WaitlistPage() {
                   <p className="text-lg md:text-xl font-semibold text-foreground">Preparing for Launch</p>
                 </div>
               </div>
-              
+
               {/* Progress Bar */}
               <div className="space-y-2">
-                <div className="w-full bg-secondary/30 rounded-full h-2 overflow-hidden">
-                  <div className="bg-gradient-to-r from-primary to-accent h-full rounded-full" style={{ width: '75%' }}></div>
+                <div className="w-full bg-secondary/30 rounded-full h-5 overflow-hidden relative">
+                  <div
+                    className={`h-full rounded-full transition-all duration-500 bg-primary relative ${progressWidth === 81 ? 'progress-shimmer' : ''}`}
+                    style={{ width: `${progressWidth}%` }}
+                  >
+                    {/* Visible shimmer overlay */}
+                    {progressWidth === 81 && (
+                      <div
+                        className="absolute top-0 bottom-0 w-1/2 progress-shimmer-overlay"
+                        style={{
+                          background: 'linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.6), transparent)',
+                          left: '-100%'
+                        }}
+                      ></div>
+                    )}
+                  </div>
                 </div>
-                <p className="text-sm text-foreground/60 text-center">75% complete • Check back soon for updates</p>
+                <p className="text-sm text-foreground/60 text-center">81% complete • Check back soon for updates</p>
               </div>
 
               {/* Email Notification */}
@@ -153,15 +232,26 @@ export default function WaitlistPage() {
           </div>
         </section>
 
+
         {/* Visual Placeholder Section */}
         <section className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-16 md:py-24">
-          <div className="grid md:grid-cols-2 gap-8 items-center">
-            {/* Left: Wellness Visuals */}
-            <div className="space-y-6">
-              <div className="bg-gradient-to-br from-primary/20 to-accent/20 rounded-3xl aspect-square flex items-center justify-center border border-primary/20">
-                <div className="text-center space-y-4">
-                  <Heart className="w-24 h-24 text-primary/40 mx-auto" />
-                  <p className="text-foreground/40 font-medium">Wellness Imagery</p>
+          <div className="grid md:grid-cols-2 gap-8 md:gap-12 items-center">
+            {/* Left: Wellness Visuals with overflow for floating arrows */}
+            <div className="space-y-6 relative">
+              <div className="overflow-visible">
+                <div
+                  className="bg-gradient-to-br from-primary/20 to-accent/20 rounded-3xl aspect-square flex items-center justify-center border border-primary/20 relative"
+                  style={{
+                    overflow: 'visible',
+                    paddingLeft: '40px',
+                    paddingTop: '40px'
+                  }}
+                >
+                  <div
+                    className="w-full aspect-square">
+                    <Image src="/mother-wellness.png" alt="Mother and child" fill className="object-contain p-8 scale-150 -translate-x-[12%] -translate-y-[5%]"
+                      priority />
+                  </div>
                 </div>
               </div>
             </div>
@@ -176,7 +266,7 @@ export default function WaitlistPage() {
                   Designed for every stage of motherhood
                 </h3>
               </div>
-              
+
               <p className="text-lg text-foreground/70 leading-relaxed">
                 From preconception planning through postpartum recovery, Matri grows with you. Our intelligent system learns your needs and delivers insights exactly when you need them most.
               </p>
@@ -198,6 +288,7 @@ export default function WaitlistPage() {
             </div>
           </div>
         </section>
+
 
         {/* Share & CTA Section */}
         <section className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-16 md:py-24">

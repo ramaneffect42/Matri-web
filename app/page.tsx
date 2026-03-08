@@ -10,6 +10,7 @@ import { useAuth } from '@/lib/auth-context'
 import { useRouter } from 'next/navigation'
 import Image from "next/image";
 import { GoogleAuthButton } from '@/components/auth/google-auth-button'
+import { GoogleOneTap } from '@/components/auth/google-one-tap'
 
 export default function Home() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
@@ -25,6 +26,8 @@ export default function Home() {
 
   return (
     <div className="min-h-screen bg-gradient-to-b from-background via-background to-secondary/10">
+      {/* Google One Tap - shows only to unauthenticated users */}
+      {!user && <GoogleOneTap />}
       {/* Navigation */}
       <nav className="sticky top-0 z-50 bg-background/80 backdrop-blur-md border-b border-border">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4 flex justify-between items-center">
@@ -363,4 +366,4 @@ export default function Home() {
       )}
     </div>
   )
-}
+  }

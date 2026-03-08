@@ -9,7 +9,9 @@ import {
   signInWithEmailAndPassword,
   updateProfile,
   AuthError,
-  getRedirectResult
+  getRedirectResult,
+  sendEmailVerification,
+  sendPasswordResetEmail
 } from 'firebase/auth'
 import { auth } from './firebase'
 import { FullscreenLoader } from '@/components/ui/full-screen-loader'
@@ -20,6 +22,7 @@ interface AuthContextType {
   logout: () => Promise<void>
   signup: (email: string, password: string, name: string) => Promise<void>
   login: (email: string, password: string) => Promise<void>
+  resendVerificationEmail: () => Promise<void>
 }
 
 const AuthContext = createContext<AuthContextType | undefined>(undefined)
@@ -55,6 +58,8 @@ export function AuthProvider({ children }: { children: ReactNode }) {
     try {
       const result = await createUserWithEmailAndPassword(auth, email, password)
       await updateProfile(result.user, { displayName: name })
+      // Send verification email
+      await sendEmailVerification(result.user)
       setUser({ ...result.user, displayName: name })
     } catch (error) {
       const authError = error as AuthError
@@ -72,6 +77,19 @@ export function AuthProvider({ children }: { children: ReactNode }) {
     }
   }
 
+  const resendVerificationEmail = async () => {
+    try {
+      if (auth.currentUser) {
+        await sendEmailVerification(auth.currentUser)
+      } else {
+        throw new Error('No user logged in')
+      }
+    } catch (error) {
+      const authError = error as AuthError
+      throw new Error(authError.message)
+    }
+  }
+
   const logout = async () => {
     await signOut(auth)
     setUser(null)
@@ -80,7 +98,7 @@ export function AuthProvider({ children }: { children: ReactNode }) {
   return (
     <>
       <FullscreenLoader isOpen={loading} message="Preparing your experience..." />
-      <AuthContext.Provider value={{ user, loading, logout, signup, login }}>
+      <AuthContext.Provider value={{ user, loading, logout, signup, login, resendVerificationEmail }}>
         {children}
       </AuthContext.Provider>
     </>

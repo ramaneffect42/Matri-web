@@ -125,3 +125,51 @@ body {
   @apply bg-background text-foreground;
 }
 }
+
+@layer utilities {
+@keyframes progress-fill {
+  from {
+    width: 0%;
+  }
+  to {
+    width: 81%;
+  }
+}
+
+@keyframes shimmer {
+  0% {
+    background-position: -1000px 0;
+  }
+  100% {
+    background-position: 1000px 0;
+  }
+}
+
+@keyframes shimmer-overlay {
+  0% {
+    left: -100%;
+  }
+  100% {
+    left: 100%;
+  }
+}
+
+.progress-animate {
+  animation: progress-fill 1.8s ease-out forwards;
+}
+
+.progress-shimmer {
+  background: linear-gradient(
+    90deg,
+    var(--primary) 0%,
+    var(--accent) 50%,
+    var(--primary) 100%
+  );
+  background-size: 1000px 100%;
+  animation: shimmer 2.5s linear infinite;
+}
+
+.progress-shimmer-overlay {
+  animation: shimmer-overlay 2s linear infinite;
+}
+}
