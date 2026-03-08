@@ -8,7 +8,8 @@ import {
   createUserWithEmailAndPassword,
   signInWithEmailAndPassword,
   updateProfile,
-  AuthError
+  AuthError,
+  getRedirectResult
 } from 'firebase/auth'
 import { auth } from './firebase'
 import { FullscreenLoader } from '@/components/ui/full-screen-loader'
@@ -28,6 +29,20 @@ export function AuthProvider({ children }: { children: ReactNode }) {
   const [loading, setLoading] = useState(true)
 
   useEffect(() => {
+    // Check for redirect result from mobile Google Sign-In
+    const handleRedirectResult = async () => {
+      try {
+        const result = await getRedirectResult(auth)
+        if (result?.user) {
+          setUser(result.user)
+        }
+      } catch (error) {
+        console.error('[v0] Redirect result error:', error)
+      }
+    }
+
+    handleRedirectResult()
+
     const unsubscribe = onAuthStateChanged(auth, (currentUser) => {
       setUser(currentUser)
       setLoading(false)

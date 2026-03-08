@@ -5,14 +5,23 @@ import { Button } from '@/components/ui/button'
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card'
 import { Badge } from '@/components/ui/badge'
 import { Heart, CheckCircle2, Calendar, Pill, FileText, Baby, Lightbulb, Lock, Shield, Menu, X, LogOut } from 'lucide-react'
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import { useAuth } from '@/lib/auth-context'
+import { useRouter } from 'next/navigation'
 import Image from "next/image";
 import { GoogleAuthButton } from '@/components/auth/google-auth-button'
 
 export default function Home() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
   const { user, loading, logout } = useAuth()
+  const router = useRouter()
+
+  // Redirect authenticated users to waitlist
+  useEffect(() => {
+    if (user && !loading) {
+      router.push('/waitlist')
+    }
+  }, [user, loading, router])
 
   return (
     <div className="min-h-screen bg-gradient-to-b from-background via-background to-secondary/10">
@@ -155,6 +164,8 @@ export default function Home() {
                 <GoogleAuthButton 
                   size="lg" 
                   className="bg-primary text-primary-foreground hover:bg-primary/90 shadow-lg shadow-primary/20"
+                  onSuccess={() => router.push('/waitlist')}
+                  onError={(error) => console.error('[v0] Auth error:', error.message)}
                 />
                 <Button 
                   variant="outline" 

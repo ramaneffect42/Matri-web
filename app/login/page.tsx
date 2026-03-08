@@ -5,9 +5,10 @@ import Link from 'next/link'
 import { useRouter } from 'next/navigation'
 import { Button } from '@/components/ui/button'
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card'
-import { Input } from '@/components/ui/input' 
+import { Input } from '@/components/ui/input'
 import { Label } from '@/components/ui/label'
 import { GoogleAuthButton } from '@/components/auth/google-auth-button'
+import { AuthNav } from '@/components/auth/auth-nav'
 import { useAuth } from '@/lib/auth-context'
 import { Spinner } from '@/components/ui/spinner'
 
@@ -32,7 +33,7 @@ export default function LoginPage() {
 
     try {
       await login(email, password)
-      router.push('/')
+      router.push('/waitlist')
     } catch (err) {
       const errorMessage = err instanceof Error ? err.message : 'Failed to sign in'
       setError(errorMessage)
@@ -41,7 +42,9 @@ export default function LoginPage() {
   }
 
   return (
-    <div className="min-h-screen bg-gradient-to-b from-background via-background to-secondary/10 flex items-center justify-center px-4 py-12">
+    <>
+      <AuthNav />
+      <div className="min-h-screen bg-gradient-to-b from-background via-background to-secondary/10 flex items-center justify-center px-4 py-12 pt-24">
       <Card className="w-full max-w-md border border-border/50 bg-card rounded-3xl shadow-lg">
         <CardHeader className="space-y-2 text-center">
           <div className="text-center mb-4">
@@ -126,6 +129,7 @@ export default function LoginPage() {
           </p>
         </CardContent>
       </Card>
-    </div>
+      </div>
+    </>
   )
 }

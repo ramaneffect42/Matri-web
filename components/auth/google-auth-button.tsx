@@ -1,8 +1,8 @@
 'use client'
 
 import { useState } from 'react'
-import { signInWithPopup } from 'firebase/auth'
-import { auth, googleProvider } from '@/lib/firebase'
+import { signInWithPopup, signInWithRedirect } from 'firebase/auth'
+import { auth, googleProvider, isMobileDevice } from '@/lib/firebase'
 import { Button } from '@/components/ui/button'
 import { Spinner } from '@/components/ui/spinner'
 
@@ -28,13 +28,29 @@ export function GoogleAuthButton({
   const handleGoogleSignIn = async () => {
     try {
       setLoading(true)
-      await signInWithPopup(auth, googleProvider)
-      onSuccess?.()
+      
+      // Try popup first (best UX for all devices)
+      try {
+        await signInWithPopup(auth, googleProvider)
+        console.log('[v0] Popup sign-in successful')
+        onSuccess?.()
+      } catch (popupError: any) {
+        // If popup is blocked or closed, fall back to redirect
+        if (
+          popupError.code === 'auth/popup-closed-by-user' ||
+          popupError.code === 'auth/cancelled-popup-request'
+        ) {
+          console.log('[v0] Popup blocked/closed. Falling back to redirect...')
+          await signInWithRedirect(auth, googleProvider)
+          // Note: After redirect, user will return and be handled by getRedirectResult in auth-context
+        } else {
+          throw popupError
+        }
+      }
     } catch (error) {
       const err = error instanceof Error ? error : new Error('Failed to sign in')
       console.error('[v0] Google sign in error:', err.message)
       onError?.(err)
-    } finally {
       setLoading(false)
     }
   }

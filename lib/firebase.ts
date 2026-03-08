@@ -18,3 +18,11 @@ export const googleProvider = new GoogleAuthProvider()
 setPersistence(auth, browserLocalPersistence).catch((error) => {
   console.error('[v0] Persistence error:', error)
 })
+
+// Utility to detect mobile devices
+export const isMobileDevice = (): boolean => {
+  if (typeof window === 'undefined') return false
+  const userAgent = navigator.userAgent.toLowerCase()
+  const mobileRegex = /android|webos|iphone|ipad|ipod|blackberry|iemobile|opera mini/i
+  return mobileRegex.test(userAgent)
+}
