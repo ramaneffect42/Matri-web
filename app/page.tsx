@@ -31,7 +31,7 @@ export default function Home() {
       {/* Navigation */}
       <nav className="sticky top-0 z-50 bg-background/80 backdrop-blur-md border-b border-border">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4 flex justify-between items-center">
-          <div className="text-2xl font-semibold text-primary">Matri</div>
+          <div className="text-2xl font-semibold text-primary">Matrilux</div>
           
           {/* Desktop Menu */}
           <div className="hidden md:flex gap-8 items-center">
@@ -160,7 +160,7 @@ export default function Home() {
               </div>
               
               <p className="text-lg text-foreground/70 leading-relaxed max-w-xl text-balance">
-                From planning pregnancy to postpartum care, Matri is your trusted companion. Track your wellness, understand your health, and feel supported every step of the way.
+                From planning pregnancy to postpartum care, Matrilux is your trusted companion. Track your wellness, understand your health, and feel supported every step of the way.
               </p>
 
               <div className="flex flex-col sm:flex-row gap-4 pt-4">
@@ -304,7 +304,7 @@ export default function Home() {
       {!user && (
       <section className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-20 text-center space-y-8">
         <h2 className="text-4xl md:text-5xl font-light text-foreground leading-tight text-balance">
-          Start your journey with Matri
+          Start your journey with Matrilux
         </h2>
         <p className="text-lg text-foreground/60 max-w-2xl mx-auto">
           Join us to take control of your maternal health with confidence and care
@@ -329,7 +329,7 @@ export default function Home() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
           <div className="grid md:grid-cols-4 gap-8 mb-8">
             <div>
-              <div className="text-lg font-semibold text-primary mb-4">Matri</div>
+              <div className="text-lg font-semibold text-primary mb-4">Matrilux</div>
               <p className="text-sm text-foreground/60">Supporting maternal wellness with care and compassion</p>
             </div>
             <div>
@@ -355,7 +355,7 @@ export default function Home() {
           </div>
           
           <div className="border-t border-border/30 pt-8 flex flex-col md:flex-row justify-between items-center text-sm text-foreground/50">
-            <p>&copy; 2024 Matri. All rights reserved.</p>
+            <p>&copy; 2026 Matrilux. All rights reserved.</p>
             <p>Made with care for every mother.</p>
           </div>
         </div>
