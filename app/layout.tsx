@@ -7,8 +7,8 @@ import Script from "next/script";
 const fontSans = Inter({subsets:['latin'],variable:'--font-sans'});
 
 export const metadata: Metadata = {
-  title: "Matri - Supporting You Through Every Stage of Motherhood",
-  description: "Matri is your trusted companion for maternal wellness. Track your health, understand your body, and feel supported through pregnancy, postpartum, and beyond with privacy-first care.",
+  title: "Matrilux - Supporting You Through Every Stage of Motherhood",
+  description: "Matrilux is your trusted companion for maternal wellness. Track your health, understand your body, and feel supported through pregnancy, postpartum, and beyond with privacy-first care.",
 };
 
 export default function RootLayout({

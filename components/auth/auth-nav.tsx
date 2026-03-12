@@ -13,7 +13,7 @@ export function AuthNav() {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4 flex items-center justify-between">
         {/* Logo */}
         <Link href="/" className="flex items-center gap-2 hover:opacity-80 transition">
-          <div className="text-2xl font-semibold text-primary">Matri</div>
+          <div className="text-2xl font-semibold text-primary">Matrilux</div>
         </Link>
 
         {/* Back Button */}

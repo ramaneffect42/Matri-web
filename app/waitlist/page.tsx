@@ -64,12 +64,12 @@ export default function WaitlistPage() {
     {
       icon: Lock,
       title: 'Privacy-First Wellness Tracking',
-      description: 'Your maternal health data is sacred. Matri uses end-to-end encryption and gives you complete control over your medical records. We never sell your data—only you decide what information is shared with healthcare providers.'
+      description: 'Your maternal health data is sacred. Matrilux uses end-to-end encryption and gives you complete control over your medical records. We never sell your data—only you decide what information is shared with healthcare providers.'
     },
     {
       icon: Baby,
       title: 'Stage-Based Support',
-      description: 'Whether you\'re planning pregnancy, experiencing pregnancy changes, or navigating postpartum recovery, Matri adapts to your stage. Personalized insights, symptom tracking, and wellness tips evolve with your journey.'
+      description: 'Whether you\'re planning pregnancy, experiencing pregnancy changes, or navigating postpartum recovery, Matrilux adapts to your stage. Personalized insights, symptom tracking, and wellness tips evolve with your journey.'
     },
     {
       icon: Brain,
@@ -87,7 +87,7 @@ export default function WaitlistPage() {
             <div className="flex items-center gap-3">
               <Mail className="w-5 h-5 text-accent flex-shrink-0" />
               <p className="text-sm text-foreground/80">
-                Hi {user.displayName?.split(' ')[0] || 'there'}, please verify your email to get full access to Matri features.
+                Hi {user.displayName?.split(' ')[0] || 'there'}, please verify your email to get full access to Matrilux features.
               </p>
             </div>
             <div className="flex items-center gap-2">
@@ -120,7 +120,7 @@ export default function WaitlistPage() {
       <nav className="sticky top-0 z-40 bg-background/80 backdrop-blur-md border-b border-border/50">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4 flex items-center justify-between">
           <Link href="/" className="text-2xl font-semibold text-primary hover:opacity-80 transition">
-            Matri
+            Matrilux
           </Link>
           <Button
             onClick={logout}
@@ -140,7 +140,7 @@ export default function WaitlistPage() {
             {/* Welcome Badge */}
             <div className="flex justify-center">
               <Badge className="rounded-full px-4 py-2 bg-primary/10 text-primary border-primary/20">
-                You're on the Matri Waitlist
+                You're on the Matrilux Waitlist
               </Badge>
             </div>
 
@@ -202,7 +202,7 @@ export default function WaitlistPage() {
             <div className="text-center space-y-4">
               <h2 className="text-4xl md:text-5xl font-light text-foreground">What's Coming</h2>
               <p className="text-lg text-foreground/70 max-w-2xl mx-auto">
-                Matri is designed with maternal wellness at its core. Here's what you can expect:
+                Matrilux is designed with maternal wellness at its core. Here's what you can expect:
               </p>
             </div>
 
@@ -268,7 +268,7 @@ export default function WaitlistPage() {
               </div>
 
               <p className="text-lg text-foreground/70 leading-relaxed">
-                From preconception planning through postpartum recovery, Matri grows with you. Our intelligent system learns your needs and delivers insights exactly when you need them most.
+                From preconception planning through postpartum recovery, Matrilux grows with you. Our intelligent system learns your needs and delivers insights exactly when you need them most.
               </p>
 
               <div className="space-y-3 pt-4">
@@ -297,7 +297,7 @@ export default function WaitlistPage() {
               <div className="space-y-8">
                 <div className="text-center space-y-4">
                   <h3 className="text-3xl md:text-4xl font-light text-foreground">
-                    Share Matri with someone you care about
+                    Share Matrilux with someone you care about
                   </h3>
                   <p className="text-lg text-foreground/70 max-w-2xl mx-auto">
                     Help more mothers feel supported. Share your referral link and both of you'll get priority access when we launch.

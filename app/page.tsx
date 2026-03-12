@@ -307,7 +307,7 @@ export default function Home() {
           Start your journey with Matri
         </h2>
         <p className="text-lg text-foreground/60 max-w-2xl mx-auto">
-          Join thousands of mothers who are taking control of their maternal health with confidence and care
+          Join us to take control of your maternal health with confidence and care
         </p>
         
         <div className="flex flex-col sm:flex-row gap-4 justify-center pt-4">
@@ -336,15 +336,12 @@ export default function Home() {
               <h4 className="font-medium text-foreground mb-4">Product</h4>
               <ul className="space-y-2 text-sm text-foreground/60">
                 <li><Link href="#" className="hover:text-foreground transition">Features</Link></li>
-                <li><Link href="#" className="hover:text-foreground transition">Pricing</Link></li>
                 <li><Link href="#" className="hover:text-foreground transition">Security</Link></li>
               </ul>
             </div>
             <div>
               <h4 className="font-medium text-foreground mb-4">Company</h4>
               <ul className="space-y-2 text-sm text-foreground/60">
-                <li><Link href="#" className="hover:text-foreground transition">About</Link></li>
-                <li><Link href="#" className="hover:text-foreground transition">Blog</Link></li>
                 <li><Link href="#" className="hover:text-foreground transition">Contact</Link></li>
               </ul>
             </div>

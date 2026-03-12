@@ -48,7 +48,7 @@ export default function LoginPage() {
       <Card className="w-full max-w-md border border-border/50 bg-card rounded-3xl shadow-lg">
         <CardHeader className="space-y-2 text-center">
           <div className="text-center mb-4">
-            <h1 className="text-3xl font-semibold text-primary">Matri</h1>
+            <h1 className="text-3xl font-semibold text-primary">Matrilux</h1>
           </div>
           <CardTitle className="text-2xl font-light text-foreground">Welcome back</CardTitle>
           <CardDescription className="text-foreground/60">
