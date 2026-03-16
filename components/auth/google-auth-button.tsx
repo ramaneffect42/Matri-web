@@ -32,7 +32,7 @@ export function GoogleAuthButton({
       // Try popup first (best UX for all devices)
       try {
         await signInWithPopup(auth, googleProvider)
-        console.log('[v0] Popup sign-in successful')
+        console.log('[Popup sign-in successful')
         onSuccess?.()
       } catch (popupError: any) {
         // If popup is blocked or closed, fall back to redirect
@@ -40,7 +40,7 @@ export function GoogleAuthButton({
           popupError.code === 'auth/popup-closed-by-user' ||
           popupError.code === 'auth/cancelled-popup-request'
         ) {
-          console.log('[v0] Popup blocked/closed. Falling back to redirect...')
+          console.log('Popup blocked/closed. Falling back to redirect...')
           await signInWithRedirect(auth, googleProvider)
           // Note: After redirect, user will return and be handled by getRedirectResult in auth-context
         } else {
@@ -49,7 +49,7 @@ export function GoogleAuthButton({
       }
     } catch (error) {
       const err = error instanceof Error ? error : new Error('Failed to sign in')
-      console.error('[v0] Google sign in error:', err.message)
+      console.error('Google sign in error:', err.message)
       onError?.(err)
       setLoading(false)
     }

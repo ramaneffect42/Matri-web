@@ -77,7 +77,7 @@ export default function SignupPage() {
               <Input
                 id="name"
                 type="text"
-                placeholder="Sarah Anderson"
+                placeholder="Vidya Lakshmi"
                 value={name}
                 onChange={(e) => setName(e.target.value)}
                 disabled={isLoading}
@@ -159,6 +159,7 @@ export default function SignupPage() {
             size="lg" 
             className="w-full bg-primary text-primary-foreground hover:bg-primary/90 shadow-lg shadow-primary/20"
             disabled={isLoading}
+            onSuccess={() => router.push('/waitlist')}
           />
 
           <p className="text-center text-sm text-foreground/60">

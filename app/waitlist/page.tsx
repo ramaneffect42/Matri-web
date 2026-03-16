@@ -7,8 +7,9 @@ import { Card, CardContent, CardHeader } from '@/components/ui/card'
 import { Badge } from '@/components/ui/badge'
 import { Heart, Lock, Baby, Brain, Share2, ArrowRight, CheckCircle2, X, Mail } from 'lucide-react'
 import Link from 'next/link'
-import Image from 'next/image'
 import { useEffect, useState } from 'react'
+import { DashboardNav } from '@/components/ui/dashboard-nav'
+import Image from 'next/image'
 
 export default function WaitlistPage() {
   const { user, logout, resendVerificationEmail } = useAuth()
@@ -64,12 +65,12 @@ export default function WaitlistPage() {
     {
       icon: Lock,
       title: 'Privacy-First Wellness Tracking',
-      description: 'Your maternal health data is sacred. Matrilux uses end-to-end encryption and gives you complete control over your medical records. We never sell your data—only you decide what information is shared with healthcare providers.'
+      description: 'Your maternal health data is sacred. Matri uses end-to-end encryption and gives you complete control over your medical records. We never sell your data—only you decide what information is shared with healthcare providers.'
     },
     {
       icon: Baby,
       title: 'Stage-Based Support',
-      description: 'Whether you\'re planning pregnancy, experiencing pregnancy changes, or navigating postpartum recovery, Matrilux adapts to your stage. Personalized insights, symptom tracking, and wellness tips evolve with your journey.'
+      description: 'Whether you\'re planning pregnancy, experiencing pregnancy changes, or navigating postpartum recovery, Matri adapts to your stage. Personalized insights, symptom tracking, and wellness tips evolve with your journey.'
     },
     {
       icon: Brain,
@@ -87,7 +88,7 @@ export default function WaitlistPage() {
             <div className="flex items-center gap-3">
               <Mail className="w-5 h-5 text-accent flex-shrink-0" />
               <p className="text-sm text-foreground/80">
-                Hi {user.displayName?.split(' ')[0] || 'there'}, please verify your email to get full access to Matrilux features.
+                Hi {user.displayName?.split(' ')[0] || 'there'}, please verify your email to get full access to Matri features.
               </p>
             </div>
             <div className="flex items-center gap-2">
@@ -116,22 +117,8 @@ export default function WaitlistPage() {
         </div>
       )}
 
-      {/* Navigation */}
-      <nav className="sticky top-0 z-40 bg-background/80 backdrop-blur-md border-b border-border/50">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4 flex items-center justify-between">
-          <Link href="/" className="text-2xl font-semibold text-primary hover:opacity-80 transition">
-            Matrilux
-          </Link>
-          <Button
-            onClick={logout}
-            variant="outline"
-            size="sm"
-            className="rounded-full"
-          >
-            Sign Out
-          </Button>
-        </div>
-      </nav>
+      {/* Dashboard Navigation */}
+      <DashboardNav />
 
       <div className="min-h-screen bg-gradient-to-b from-background via-background to-secondary/10">
         {/* Hero Section */}
@@ -140,7 +127,7 @@ export default function WaitlistPage() {
             {/* Welcome Badge */}
             <div className="flex justify-center">
               <Badge className="rounded-full px-4 py-2 bg-primary/10 text-primary border-primary/20">
-                You're on the Matrilux Waitlist
+                You're on the Matri Waitlist
               </Badge>
             </div>
 
@@ -165,17 +152,17 @@ export default function WaitlistPage() {
                   <p className="text-lg md:text-xl font-semibold text-foreground">Preparing for Launch</p>
                 </div>
               </div>
-
+              
               {/* Progress Bar */}
               <div className="space-y-2">
                 <div className="w-full bg-secondary/30 rounded-full h-5 overflow-hidden relative">
-                  <div
+                  <div 
                     className={`h-full rounded-full transition-all duration-500 bg-primary relative ${progressWidth === 81 ? 'progress-shimmer' : ''}`}
                     style={{ width: `${progressWidth}%` }}
                   >
                     {/* Visible shimmer overlay */}
                     {progressWidth === 81 && (
-                      <div
+                      <div 
                         className="absolute top-0 bottom-0 w-1/2 progress-shimmer-overlay"
                         style={{
                           background: 'linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.6), transparent)',
@@ -202,7 +189,7 @@ export default function WaitlistPage() {
             <div className="text-center space-y-4">
               <h2 className="text-4xl md:text-5xl font-light text-foreground">What's Coming</h2>
               <p className="text-lg text-foreground/70 max-w-2xl mx-auto">
-                Matrilux is designed with maternal wellness at its core. Here's what you can expect:
+                Matri is designed with maternal wellness at its core. Here's what you can expect:
               </p>
             </div>
 
@@ -232,7 +219,6 @@ export default function WaitlistPage() {
           </div>
         </section>
 
-
         {/* Visual Placeholder Section */}
         <section className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-16 md:py-24">
           <div className="grid md:grid-cols-2 gap-8 md:gap-12 items-center">
@@ -249,7 +235,7 @@ export default function WaitlistPage() {
                 >
                   <div
                     className="w-full aspect-square">
-                    <Image src="/mother-wellness.png" alt="Mother and child" fill className="object-contain p-8 scale-150 -translate-x-[12%] -translate-y-[5%]"
+                    <Image src="/mother-image.png" alt="Mother and child" fill className="object-contain p-8 scale-150"
                       priority />
                   </div>
                 </div>
@@ -266,9 +252,9 @@ export default function WaitlistPage() {
                   Designed for every stage of motherhood
                 </h3>
               </div>
-
+              
               <p className="text-lg text-foreground/70 leading-relaxed">
-                From preconception planning through postpartum recovery, Matrilux grows with you. Our intelligent system learns your needs and delivers insights exactly when you need them most.
+                From preconception planning through postpartum recovery, Matri grows with you. Our intelligent system learns your needs and delivers insights exactly when you need them most.
               </p>
 
               <div className="space-y-3 pt-4">
@@ -289,7 +275,6 @@ export default function WaitlistPage() {
           </div>
         </section>
 
-
         {/* Share & CTA Section */}
         <section className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-16 md:py-24">
           <Card className="bg-card rounded-3xl border border-border/50 overflow-hidden">
@@ -297,7 +282,7 @@ export default function WaitlistPage() {
               <div className="space-y-8">
                 <div className="text-center space-y-4">
                   <h3 className="text-3xl md:text-4xl font-light text-foreground">
-                    Share Matrilux with someone you care about
+                    Share Matri with someone you care about
                   </h3>
                   <p className="text-lg text-foreground/70 max-w-2xl mx-auto">
                     Help more mothers feel supported. Share your referral link and both of you'll get priority access when we launch.
@@ -333,7 +318,7 @@ export default function WaitlistPage() {
         <section className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-12 md:py-16 text-center">
           <div className="space-y-4">
             <p className="text-lg text-foreground/70">
-              ✨ Thank you for joining us on this journey
+              Thank you for joining us on this journey ❤️
             </p>
             <p className="text-sm text-foreground/50">
               Check back soon for launch updates. In the meantime, explore what's coming on our <Link href="/" className="text-primary hover:underline">homepage</Link>.

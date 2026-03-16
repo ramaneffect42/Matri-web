@@ -183,10 +183,10 @@ export default function Home() {
 
             {/* Phone Mockup Placeholder */}
             <div className="hidden md:flex items-center justify-center">
-              <div className="w-full max-w-sm aspect-square bg-gradient-to-br from-secondary to-accent/20 rounded-3xl shadow-2xl shadow-primary/10 flex items-center justify-center">
+              <div className="w-full max-w-sm">
                 <div
-                  className="relative w-full max-w-sm aspect-square rounded-3xl bg-gradient-to-br from-secondary to-accent/20 shadow-2xl shadow-primary/10 overflow-hidden">
-                  <Image src="/mother-image.png" alt="Mother and child" fill className="object-contain p-6 scale-180"
+                  className="relative w-full max-w-sm aspect-square rounded-3xl bg-gradient-to-br from-secondary to-accent/20 shadow-2xl shadow-primary/10">
+                  <Image src="/mother-wellness.png" alt="Mother and child" fill className="object-contain p-8 scale-150 -translate-x-[12%] -translate-y-[5%]"
                     priority />
                 </div>
               </div>
