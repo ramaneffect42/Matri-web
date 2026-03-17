@@ -8,7 +8,7 @@ import { Badge } from '@/components/ui/badge'
 import { Heart, Lock, Baby, Brain, Share2, ArrowRight, CheckCircle2, X, Mail } from 'lucide-react'
 import Link from 'next/link'
 import { useEffect, useState } from 'react'
-import { DashboardNav } from '@/components/ui/dashboard-nav'
+import { DashboardNav } from '@/dashboard/dashboard-nav'
 import Image from 'next/image'
 
 export default function WaitlistPage() {
@@ -30,7 +30,7 @@ export default function WaitlistPage() {
   // Animate progress bar on mount
   useEffect(() => {
     const timer = setTimeout(() => {
-      setProgressWidth(81)
+      setProgressWidth(76)
     }, 100)
     return () => clearTimeout(timer)
   }, [])
@@ -65,12 +65,12 @@ export default function WaitlistPage() {
     {
       icon: Lock,
       title: 'Privacy-First Wellness Tracking',
-      description: 'Your maternal health data is sacred. Matri uses end-to-end encryption and gives you complete control over your medical records. We never sell your data—only you decide what information is shared with healthcare providers.'
+      description: 'Your maternal health data is sacred. Matrilux uses end-to-end encryption and gives you complete control over your medical records. We never sell your data—only you decide what information is shared with healthcare providers.'
     },
     {
       icon: Baby,
       title: 'Stage-Based Support',
-      description: 'Whether you\'re planning pregnancy, experiencing pregnancy changes, or navigating postpartum recovery, Matri adapts to your stage. Personalized insights, symptom tracking, and wellness tips evolve with your journey.'
+      description: 'Whether you\'re planning pregnancy, experiencing pregnancy changes, or navigating postpartum recovery, Matrilux adapts to your stage. Personalized insights, symptom tracking, and wellness tips evolve with your journey.'
     },
     {
       icon: Brain,
@@ -88,7 +88,7 @@ export default function WaitlistPage() {
             <div className="flex items-center gap-3">
               <Mail className="w-5 h-5 text-accent flex-shrink-0" />
               <p className="text-sm text-foreground/80">
-                Hi {user.displayName?.split(' ')[0] || 'there'}, please verify your email to get full access to Matri features.
+                Hi {user.displayName?.split(' ')[0] || 'there'}, please verify your email to get full access to Matrilux features.
               </p>
             </div>
             <div className="flex items-center gap-2">
@@ -127,7 +127,7 @@ export default function WaitlistPage() {
             {/* Welcome Badge */}
             <div className="flex justify-center">
               <Badge className="rounded-full px-4 py-2 bg-primary/10 text-primary border-primary/20">
-                You're on the Matri Waitlist
+                You're on the Matrilux Waitlist!
               </Badge>
             </div>
 
@@ -152,180 +152,178 @@ export default function WaitlistPage() {
                   <p className="text-lg md:text-xl font-semibold text-foreground">Preparing for Launch</p>
                 </div>
               </div>
-              
-              {/* Progress Bar */}
-              <div className="space-y-2">
-                <div className="w-full bg-secondary/30 rounded-full h-5 overflow-hidden relative">
-                  <div 
-                    className={`h-full rounded-full transition-all duration-500 bg-primary relative ${progressWidth === 81 ? 'progress-shimmer' : ''}`}
-                    style={{ width: `${progressWidth}%` }}
-                  >
-                    {/* Visible shimmer overlay */}
-                    {progressWidth === 81 && (
-                      <div 
-                        className="absolute top-0 bottom-0 w-1/2 progress-shimmer-overlay"
-                        style={{
-                          background: 'linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.6), transparent)',
-                          left: '-100%'
-                        }}
-                      ></div>
-                    )}
-                  </div>
-                </div>
-                <p className="text-sm text-foreground/60 text-center">81% complete • Check back soon for updates</p>
-              </div>
 
-              {/* Email Notification */}
-              <p className="text-center text-foreground/70">
-                We'll send you an exclusive early-access invite at <span className="font-semibold text-primary">{user.email}</span>
-              </p>
-            </div>
-          </div>
-        </section>
-
-        {/* Pillars Section */}
-        <section className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-16 md:py-24">
-          <div className="space-y-12">
-            <div className="text-center space-y-4">
-              <h2 className="text-4xl md:text-5xl font-light text-foreground">What's Coming</h2>
-              <p className="text-lg text-foreground/70 max-w-2xl mx-auto">
-                Matri is designed with maternal wellness at its core. Here's what you can expect:
-              </p>
-            </div>
-
-            {/* Pillars Grid */}
-            <div className="grid md:grid-cols-3 gap-6 md:gap-8">
-              {pillars.map((pillar, idx) => {
-                const Icon = pillar.icon
-                return (
-                  <Card key={idx} className="border border-border/50 bg-card rounded-3xl overflow-hidden hover:shadow-lg hover:shadow-primary/10 transition-shadow duration-300">
-                    <CardHeader className="space-y-4 pb-4">
-                      <div className="w-12 h-12 rounded-full bg-primary/10 flex items-center justify-center">
-                        <Icon className="w-6 h-6 text-primary" />
-                      </div>
-                      <h3 className="text-xl font-semibold text-foreground text-left">
-                        {pillar.title}
-                      </h3>
-                    </CardHeader>
-                    <CardContent>
-                      <p className="text-sm md:text-base text-foreground/70 leading-relaxed">
-                        {pillar.description}
-                      </p>
-                    </CardContent>
-                  </Card>
-                )
-              })}
-            </div>
-          </div>
-        </section>
-
-        {/* Visual Placeholder Section */}
-        <section className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-16 md:py-24">
-          <div className="grid md:grid-cols-2 gap-8 md:gap-12 items-center">
-            {/* Left: Wellness Visuals with overflow for floating arrows */}
-            <div className="space-y-6 relative">
-              <div className="overflow-visible">
+              {/* Progress Bar Container */}
+              <div className="w-full bg-secondary/30 rounded-full h-5 overflow-hidden relative">
                 <div
-                  className="bg-gradient-to-br from-primary/20 to-accent/20 rounded-3xl aspect-square flex items-center justify-center border border-primary/20 relative"
-                  style={{
-                    overflow: 'visible',
-                    paddingLeft: '40px',
-                    paddingTop: '40px'
-                  }}
+                  className={`h-full rounded-full transition-all duration-500 bg-primary relative overflow-hidden ${progressWidth ===  76? 'progress-shimmer' : ''}`}
+                  style={{ width: `${progressWidth}%` }}
                 >
-                  <div
-                    className="w-full aspect-square">
-                    <Image src="/mother-image.png" alt="Mother and child" fill className="object-contain p-8 scale-150"
-                      priority />
-                  </div>
+                  {/* Visible shimmer overlay */}
+                  {progressWidth === 76 && (
+                    <div
+                      className="absolute top-0 bottom-0 w-1/2 progress-shimmer-overlay"
+                      style={{
+                        background: 'linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.6), transparent)',
+                        left: '-100%'
+                      }}
+                    ></div>
+                  )}
                 </div>
-              </div>
+              <p className="text-sm text-foreground/60 text-center">81% complete • Check back soon for updates</p>
             </div>
 
-            {/* Right: Copy */}
-            <div className="space-y-6">
-              <div className="space-y-4">
-                <Badge className="w-fit rounded-full px-4 py-2 bg-accent/10 text-accent border-accent/20">
-                  Maternal Health Reimagined
-                </Badge>
-                <h3 className="text-4xl font-light text-foreground leading-tight">
-                  Designed for every stage of motherhood
-                </h3>
-              </div>
-              
-              <p className="text-lg text-foreground/70 leading-relaxed">
-                From preconception planning through postpartum recovery, Matri grows with you. Our intelligent system learns your needs and delivers insights exactly when you need them most.
-              </p>
-
-              <div className="space-y-3 pt-4">
-                <div className="flex items-center gap-3">
-                  <CheckCircle2 className="w-5 h-5 text-primary flex-shrink-0" />
-                  <span className="text-foreground/80">Real-time health tracking tailored to your journey</span>
-                </div>
-                <div className="flex items-center gap-3">
-                  <CheckCircle2 className="w-5 h-5 text-primary flex-shrink-0" />
-                  <span className="text-foreground/80">Secure integration with healthcare providers</span>
-                </div>
-                <div className="flex items-center gap-3">
-                  <CheckCircle2 className="w-5 h-5 text-primary flex-shrink-0" />
-                  <span className="text-foreground/80">Community support from maternal health experts</span>
-                </div>
-              </div>
-            </div>
-          </div>
-        </section>
-
-        {/* Share & CTA Section */}
-        <section className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-16 md:py-24">
-          <Card className="bg-card rounded-3xl border border-border/50 overflow-hidden">
-            <CardContent className="p-8 md:p-12">
-              <div className="space-y-8">
-                <div className="text-center space-y-4">
-                  <h3 className="text-3xl md:text-4xl font-light text-foreground">
-                    Share Matri with someone you care about
-                  </h3>
-                  <p className="text-lg text-foreground/70 max-w-2xl mx-auto">
-                    Help more mothers feel supported. Share your referral link and both of you'll get priority access when we launch.
-                  </p>
-                </div>
-
-                <div className="flex flex-col sm:flex-row gap-4 justify-center pt-4">
-                  <Button
-                    onClick={handleCopyLink}
-                    size="lg"
-                    className="rounded-full bg-primary text-primary-foreground hover:bg-primary/90 shadow-lg shadow-primary/20 flex items-center gap-2"
-                  >
-                    <Share2 className="w-5 h-5" />
-                    Copy Referral Link
-                  </Button>
-                  <Link href="/">
-                    <Button
-                      variant="outline"
-                      size="lg"
-                      className="rounded-full w-full sm:w-auto"
-                    >
-                      Back to Home
-                      <ArrowRight className="w-4 h-4 ml-2" />
-                    </Button>
-                  </Link>
-                </div>
-              </div>
-            </CardContent>
-          </Card>
-        </section>
-
-        {/* Footer Message */}
-        <section className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-12 md:py-16 text-center">
-          <div className="space-y-4">
-            <p className="text-lg text-foreground/70">
-              Thank you for joining us on this journey ❤️
-            </p>
-            <p className="text-sm text-foreground/50">
-              Check back soon for launch updates. In the meantime, explore what's coming on our <Link href="/" className="text-primary hover:underline">homepage</Link>.
+            {/* Email Notification */}
+            <p className="text-center text-foreground/70">
+              We'll send you an exclusive early-access invite at <span className="font-semibold text-primary">{user.email}</span>
             </p>
           </div>
-        </section>
       </div>
+    </section >
+
+      {/* Pillars Section */ }
+      < section className = "max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-16 md:py-24" >
+        <div className="space-y-12">
+          <div className="text-center space-y-4">
+            <h2 className="text-4xl md:text-5xl font-light text-foreground">What's Coming</h2>
+            <p className="text-lg text-foreground/70 max-w-2xl mx-auto">
+              Matrilux is designed with maternal wellness at its core. Here's what you can expect:
+            </p>
+          </div>
+
+          {/* Pillars Grid */}
+          <div className="grid md:grid-cols-3 gap-6 md:gap-8">
+            {pillars.map((pillar, idx) => {
+              const Icon = pillar.icon
+              return (
+                <Card key={idx} className="border border-border/50 bg-card rounded-3xl overflow-hidden hover:shadow-lg hover:shadow-primary/10 transition-shadow duration-300">
+                  <CardHeader className="space-y-4 pb-4">
+                    <div className="w-12 h-12 rounded-full bg-primary/10 flex items-center justify-center">
+                      <Icon className="w-6 h-6 text-primary" />
+                    </div>
+                    <h3 className="text-xl font-semibold text-foreground text-left">
+                      {pillar.title}
+                    </h3>
+                  </CardHeader>
+                  <CardContent>
+                    <p className="text-sm md:text-base text-foreground/70 leading-relaxed">
+                      {pillar.description}
+                    </p>
+                  </CardContent>
+                </Card>
+              )
+            })}
+          </div>
+        </div>
+        </section >
+
+    {/* Visual Placeholder Section */ }
+    < section className = "max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-16 md:py-24" >
+      <div className="grid md:grid-cols-2 gap-8 md:gap-12 items-center">
+        {/* Left: Wellness Visuals with overflow for floating arrows */}
+        <div className="space-y-6 relative">
+          <div className="overflow-visible">
+            <div
+              className="bg-gradient-to-br from-primary/20 to-accent/20 rounded-3xl aspect-square flex items-center justify-center border border-primary/20 relative"
+              style={{
+                overflow: 'visible',
+                paddingLeft: '40px',
+                paddingTop: '40px'
+              }}
+            >
+              <div
+                className="w-full aspect-square">
+                <Image src="/mother-image.png" alt="Mother and child" fill className="object-contain p-8 scale-150"
+                  priority />
+              </div>
+            </div>
+          </div>
+        </div>
+
+        {/* Right: Copy */}
+        <div className="space-y-6">
+          <div className="space-y-4">
+            <Badge className="w-fit rounded-full px-4 py-2 bg-accent/10 text-accent border-accent/20">
+              Maternal Health Reimagined
+            </Badge>
+            <h3 className="text-4xl font-light text-foreground leading-tight">
+              Designed for every stage of motherhood
+            </h3>
+          </div>
+
+          <p className="text-lg text-foreground/70 leading-relaxed">
+            From preconception planning through postpartum recovery, Matrilux grows with you. Our intelligent system learns your needs and delivers insights exactly when you need them most.
+          </p>
+
+          <div className="space-y-3 pt-4">
+            <div className="flex items-center gap-3">
+              <CheckCircle2 className="w-5 h-5 text-primary flex-shrink-0" />
+              <span className="text-foreground/80">Real-time health tracking tailored to your journey</span>
+            </div>
+            <div className="flex items-center gap-3">
+              <CheckCircle2 className="w-5 h-5 text-primary flex-shrink-0" />
+              <span className="text-foreground/80">Secure integration with healthcare providers</span>
+            </div>
+            <div className="flex items-center gap-3">
+              <CheckCircle2 className="w-5 h-5 text-primary flex-shrink-0" />
+              <span className="text-foreground/80">Community support from maternal health experts</span>
+            </div>
+          </div>
+        </div>
+      </div>
+        </section >
+
+    {/* Share & CTA Section */ }
+    < section className = "max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-16 md:py-24" >
+      <Card className="bg-card rounded-3xl border border-border/50 overflow-hidden">
+        <CardContent className="p-8 md:p-12">
+          <div className="space-y-8">
+            <div className="text-center space-y-4">
+              <h3 className="text-3xl md:text-4xl font-light text-foreground">
+                Share Matrilux with someone you care about
+              </h3>
+              <p className="text-lg text-foreground/70 max-w-2xl mx-auto">
+                Help more mothers feel supported. Share your referral link and both of you'll get priority access when we launch.
+              </p>
+            </div>
+
+            <div className="flex flex-col sm:flex-row gap-4 justify-center pt-4">
+              <Button
+                onClick={handleCopyLink}
+                size="lg"
+                className="rounded-full bg-primary text-primary-foreground hover:bg-primary/90 shadow-lg shadow-primary/20 flex items-center gap-2"
+              >
+                <Share2 className="w-5 h-5" />
+                Copy Referral Link
+              </Button>
+              <Link href="/">
+                <Button
+                  variant="outline"
+                  size="lg"
+                  className="rounded-full w-full sm:w-auto"
+                >
+                  Back to Home
+                  <ArrowRight className="w-4 h-4 ml-2" />
+                </Button>
+              </Link>
+            </div>
+          </div>
+        </CardContent>
+      </Card>
+        </section >
+
+    {/* Footer Message */ }
+    < section className = "max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-12 md:py-16 text-center" >
+      <div className="space-y-4">
+        <p className="text-lg text-foreground/70">
+          Thank you for joining us on this journey ❤️
+        </p>
+        <p className="text-sm text-foreground/50">
+          Check back soon for launch updates. In the meantime, explore what's coming on our <Link href="/" className="text-primary hover:underline">homepage</Link>.
+        </p>
+      </div>
+        </section >
+      </div >
     </>
   )
 }
