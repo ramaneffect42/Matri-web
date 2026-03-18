@@ -35,20 +35,22 @@ export default function AccountPage() {
   }
 
   return (
-    <>
+    <div className="min-h-screen bg-background flex flex-col">
       <DashboardNav hideUserMenu={true} />
-      <div className="flex min-h-screen bg-background">
-        {/* Sidebar */}
-        <DashboardSidebar 
-          activeTab={activeTab} 
+
+      {/* Both Sidebar and Main Content are now sharing this Flex row */}
+      <div className="flex flex-1 md:flex-row flex-col">
+        <DashboardSidebar
+          activeTab={activeTab}
           onTabChange={(tab) => setActiveTab(tab as TabType)}
           collapsed={sidebarCollapsed}
           onToggleCollapse={() => setSidebarCollapsed(!sidebarCollapsed)}
         />
-        
+
         {/* Main Content */}
-        <main className="flex-1">
-          <div className="p-8 md:p-12 max-w-4xl mx-auto w-full">
+        <main className="flex-1 min-w-0">
+          {/* FIX: Increased mobile top padding to pt-12 to push the headings down safely */}
+          <div className="px-4 pt-12 pb-12 md:p-8 lg:p-12 max-w-4xl mx-auto w-full">
             {activeTab === 'general' && <GeneralSettings />}
             {activeTab === 'privacy' && <PrivacySettings />}
             {activeTab === 'wellness' && <WellnessSettings />}
@@ -57,6 +59,6 @@ export default function AccountPage() {
           </div>
         </main>
       </div>
-    </>
+    </div>
   )
 }
