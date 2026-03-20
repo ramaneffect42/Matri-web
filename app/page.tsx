@@ -335,8 +335,8 @@ export default function Home() {
             <div>
               <h4 className="font-medium text-foreground mb-4">Product</h4>
               <ul className="space-y-2 text-sm text-foreground/60">
-                <li><Link href="#" className="hover:text-foreground transition">Features</Link></li>
-                <li><Link href="#" className="hover:text-foreground transition">Security</Link></li>
+              <li><Link href="#" className="hover:text-foreground transition">Features</Link></li>
+              <li><Link href="#" className="hover:text-foreground transition">Security</Link></li>
               </ul>
             </div>
             <div>
@@ -348,8 +348,8 @@ export default function Home() {
             <div>
               <h4 className="font-medium text-foreground mb-4">Legal</h4>
               <ul className="space-y-2 text-sm text-foreground/60">
-                <li><Link href="#" className="hover:text-foreground transition">Privacy</Link></li>
-                <li><Link href="#" className="hover:text-foreground transition">Terms</Link></li>
+                <li><Link href="/privacy-policy" className="hover:text-foreground transition">Privacy</Link></li>
+                <li><Link href="/terms-and-conditions" className="hover:text-foreground transition">Terms</Link></li>
               </ul>
             </div>
           </div>
