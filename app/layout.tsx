@@ -1,14 +1,13 @@
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import "./globals.css";
-import { AuthProvider } from "@/lib/auth-context";
-import Script from "next/script";
+import { ThemeProvider } from "@/components/theme-provider";
 
-const fontSans = Inter({subsets:['latin'],variable:'--font-sans'});
+const fontSans = Inter({ subsets: ['latin'], variable: '--font-sans' });
 
 export const metadata: Metadata = {
   title: "Matrilux - Supporting You Through Every Stage of Motherhood",
-  description: "Matrilux is your trusted companion for maternal wellness. Track your health, understand your body, and feel supported through pregnancy, postpartum, and beyond with privacy-first care.",
+  description: "MatriLux helps reduce maternal care gaps with timely tracking, trusted education, and supportive follow-through between visits.",
 };
 
 export default function RootLayout({
@@ -17,20 +16,17 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className={fontSans.variable}>
-      <body
-        className="antialiased"
-      >
-        <AuthProvider>
+    <html lang="en" className={fontSans.variable} suppressHydrationWarning>
+      <body className="antialiased font-sans">
+        <ThemeProvider
+          attribute="class"
+          defaultTheme="system"
+          enableSystem
+          disableTransitionOnChange
+        >
+          {/* AuthProvider removed - the app is now a public landing page */}
           {children}
-        </AuthProvider>
-        {/* Google One Tap */}
-        <Script 
-          src="https://accounts.google.com/gsi/client" 
-          async 
-          defer
-          strategy="afterInteractive"
-        />
+        </ThemeProvider>
       </body>
     </html>
   );
