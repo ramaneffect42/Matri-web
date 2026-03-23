@@ -2,7 +2,7 @@
 
 import Link from "next/link"
 import Image from "next/image"
-import { useState } from "react"
+import { useState, useEffect } from "react"
 import { Button } from "@/components/ui/button"
 import {
   Activity,
@@ -25,6 +25,13 @@ import {
 } from "lucide-react"
 import { DashboardNav } from "@/components/dashboard-nav"
 import { DeviceCarousel } from "@/components/device-carousel"
+
+
+const [isMounted, setIsMounted] = useState(false);
+
+useEffect(() => {
+  setIsMounted(true);
+}, []);
 
 // FeatureGrid Component - Mobile Marquee & Desktop Honeycomb
 function FeatureGrid() {
@@ -313,15 +320,15 @@ export default function Home() {
               <ul className="space-y-3 text-sm text-foreground/60">
                 <li><Link href="#" className="hover:text-primary transition-colors">About Us</Link></li>
                 <li><Link href="#" className="hover:text-primary transition-colors">Medical Board</Link></li>
-                <li><Link href="#" className="hover:text-primary transition-colors">Contact</Link></li>
+                <li><Link href="/contact" className="hover:text-primary transition-colors">Contact</Link></li>
               </ul>
             </div>
 
             <div className="flex flex-col items-center">
               <h4 className="font-semibold text-foreground mb-4">Legal</h4>
               <ul className="space-y-3 text-sm text-foreground/60">
-                <li><Link href="#" className="hover:text-primary transition-colors">Privacy Policy</Link></li>
-                <li><Link href="#" className="hover:text-primary transition-colors">Terms of Service</Link></li>
+                <li><Link href="/privacy-policy" className="hover:text-primary transition-colors">Privacy Policy</Link></li>
+                <li><Link href="/terms-and-conditions" className="hover:text-primary transition-colors">Terms of Service</Link></li>
                 <li><Link href="#" className="hover:text-primary transition-colors">Legal Compliance</Link></li>
               </ul>
             </div>
