@@ -27,16 +27,18 @@ import { DashboardNav } from "@/components/dashboard-nav"
 import { DeviceCarousel } from "@/components/device-carousel"
 
 
-const [isMounted, setIsMounted] = useState(false);
 
-useEffect(() => {
-  setIsMounted(true);
-}, []);
+
+
 
 // FeatureGrid Component - Mobile Marquee & Desktop Honeycomb
 function FeatureGrid() {
-  const [flippedId, setFlippedId] = useState<string | null>(null)
 
+  useEffect(() => {
+    setIsMounted(true);
+  }, []);
+  const [flippedId, setFlippedId] = useState<string | null>(null)
+  const [isMounted, setIsMounted] = useState(false);
   const features = [
     { icon: Baby, title: "Weekly tracking", backHighlight: "Fetal Growth", backDesc: "Track size & sensory milestones" },
     { icon: Activity, title: "Health monitoring", backHighlight: "Vitals Sync", backDesc: "Real-time alerts for blood pressure" },
