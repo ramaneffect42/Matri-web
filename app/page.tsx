@@ -329,7 +329,7 @@ export default function Home() {
               <ul className="space-y-3 text-sm text-foreground/60">
                 <li><Link href="/privacy-policy" className="hover:text-primary transition-colors">Privacy Policy</Link></li>
                 <li><Link href="/terms-and-conditions" className="hover:text-primary transition-colors">Terms of Service</Link></li>
-                <li><Link href="#" className="hover:text-primary transition-colors">Legal Compliance</Link></li>
+                <li><Link href="/legal-compliance" className="hover:text-primary transition-colors">Legal Compliance</Link></li>
               </ul>
             </div>
           </div>
