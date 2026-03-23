@@ -10,6 +10,7 @@ import Link from 'next/link'
 import { useEffect, useState } from 'react'
 import { DashboardNav } from '@/dashboard/dashboard-nav'
 import Image from 'next/image'
+import { DueDateCalculator } from '@/components/tools/due-date-calculator'
 
 export default function WaitlistPage() {
   const { user, logout, resendVerificationEmail } = useAuth()
@@ -180,6 +181,13 @@ export default function WaitlistPage() {
           </div>
       </div>
     </section >
+
+    {/* Tools Section */}
+    <section className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 pb-16 md:pb-24">
+      <div className="max-w-xl mx-auto w-full">
+        <DueDateCalculator />
+      </div>
+    </section>
 
       {/* Pillars Section */ }
       < section className = "max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-16 md:py-24" >
