@@ -2,6 +2,7 @@
 
 import { useState } from 'react'
 import Link from 'next/link'
+import { useRouter } from 'next/navigation'
 import { Button } from '@/components/ui/button'
 import { useTheme } from 'next-themes'
 import {
@@ -21,6 +22,7 @@ import {
   ChevronDown, 
   Menu, 
   Calendar, 
+  CalendarHeart,
   Lightbulb, 
   Sparkles, 
   Sun,
@@ -31,12 +33,25 @@ import {
 export function DashboardNav() {
   const [sheetOpen, setSheetOpen] = useState(false)
   const { theme, setTheme } = useTheme()
+  const router = useRouter()
 
   const wellnessTools = [
-    { icon: Calendar, label: 'Cycle & Ovulation Tracker' },
-    { icon: Sparkles, label: 'Baby Name Discovery' },
-    { icon: Lightbulb, label: 'Cycle Insights & FAQs' },
+    { icon: CalendarHeart, label: 'Due Date Calculator', href: '/tools/due-date-calculator' },
+    { icon: Calendar, label: 'Cycle & Ovulation Tracker', href: '/tools/cycle-ovulation-tracker' },
+    { icon: Sparkles, label: 'Baby Name Discovery', href: '/tools/baby-name-generator' },
+    { icon: Lightbulb, label: 'Cycle Insights & FAQs', href: '#' },
   ]
+
+  const handleToolClick = (href: string) => {
+    if (href.startsWith('#') && href.length > 1) {
+      const el = document.getElementById(href.slice(1))
+      if (el) {
+        el.scrollIntoView({ behavior: 'smooth', block: 'center' })
+      }
+    } else if (href && href !== '#') {
+      router.push(href)
+    }
+  }
 
   return (
     <nav className="sticky top-0 z-40 bg-primary/5 dark:bg-primary/5 backdrop-blur-md border-b border-primary/10">
@@ -68,7 +83,11 @@ export function DashboardNav() {
               {wellnessTools.map((tool) => {
                 const Icon = tool.icon
                 return (
-                  <DropdownMenuItem key={tool.label} className="gap-4 cursor-pointer p-3 rounded-xl hover:bg-primary/5 transition-colors">
+                  <DropdownMenuItem 
+                    key={tool.label} 
+                    className="gap-4 cursor-pointer p-3 rounded-xl hover:bg-primary/5 transition-colors"
+                    onClick={() => handleToolClick(tool.href)}
+                  >
                     <Icon className="w-6 h-6 text-primary" />
                     <span className="text-base font-medium">{tool.label}</span>
                   </DropdownMenuItem>
@@ -121,15 +140,17 @@ export function DashboardNav() {
               <div className="flex-1 py-6 space-y-6">
                 <h4 className="text-sm font-semibold text-foreground/50 uppercase tracking-wider mb-4">Wellness Tools</h4>
                 {wellnessTools.map((tool) => (
-                  <Link 
+                  <button 
                     key={tool.label} 
-                    href="#" 
-                    className="flex items-center gap-4 py-2" 
-                    onClick={() => setSheetOpen(false)}
+                    className="flex items-center gap-4 py-2 w-full text-left" 
+                    onClick={() => {
+                      setSheetOpen(false)
+                      setTimeout(() => handleToolClick(tool.href), 300)
+                    }}
                   >
                     <tool.icon className="w-6 h-6 text-primary" />
                     <span className="text-base">{tool.label}</span>
-                  </Link>
+                  </button>
                 ))}
               </div>
 
