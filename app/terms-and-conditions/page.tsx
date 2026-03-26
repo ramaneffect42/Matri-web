@@ -2,6 +2,7 @@
 
 import Link from 'next/link'
 import { FileText, ArrowLeft } from 'lucide-react'
+import { Footer } from '@/components/footer'
 
 export default function TermsAndConditions() {
   return (
@@ -141,15 +142,7 @@ export default function TermsAndConditions() {
       </section>
 
       {/* Footer */}
-      <footer className="border-t border-border/50 bg-secondary/20">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 flex flex-col md:flex-row justify-between items-center text-sm text-foreground/50 gap-4">
-          <p>&copy; 2026 Matrilux. All rights reserved.</p>
-          <div className="flex gap-6">
-            <Link href="/privacy-policy" className="hover:text-foreground transition">Privacy Policy</Link>
-            <Link href="/terms-and-conditions" className="hover:text-foreground transition">Terms & Conditions</Link>
-          </div>
-        </div>
-      </footer>
+     <Footer />
 
     </div>
   )
