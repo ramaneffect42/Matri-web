@@ -1,36 +1,111 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# 🌸 MatriLux
 
-## Getting Started
+> Expert maternal wellness guidance, from bump to baby.
 
-First, run the development server:
+MatriLux is a modern maternal wellness web experience designed around the journey from **preconception to pregnancy and postpartum care**.
+
+The project focuses on presenting a calm, supportive interface for tracking, education, health information, and continued support between clinical visits.
+
+## ✨ Highlights
+
+- 🌱 **Preconception** — cycle tracking and fertility insights
+- 🤰 **Pregnancy** — weekly fetal growth and health monitoring
+- 💗 **Postpartum** — maternal recovery and newborn-care support
+- 📊 Interactive health and tracking features
+- 📅 Appointment reminders
+- 📝 Symptom and test-result tracking
+- 🥗 Nutrition planning
+- 🧠 Mental wellness tracking
+- 🩺 Telehealth and expert-support concepts
+- 👥 Community and peer-support features
+- 📍 Nearby doctor discovery
+- 🌐 Multilingual support
+- 📶 Offline-access concepts
+
+## 🖥️ Web Experience
+
+The current site is structured as a responsive landing/product experience with:
+
+- A responsive hero section
+- Maternal journey navigation
+- Interactive feature cards
+- Device/app presentation
+- Early-adopter waitlist CTA
+- Responsive layouts for mobile and desktop
+- Light/dark theme support
+
+## 🛠️ Tech Stack
+
+| Technology | Purpose |
+| --- | --- |
+| Next.js | Web framework |
+| React | UI |
+| TypeScript | Type-safe development |
+| Tailwind CSS | Styling |
+| Framer Motion | Animations |
+| Recharts | Data visualization |
+| Supabase | Backend integration |
+| Firebase | Supporting services |
+| Lucide / Tabler Icons | Interface icons |
+
+## 📁 Project Structure
+
+```text
+Matri-web/
+├── app/
+├── components/
+├── lib/
+├── public/
+├── next.config.ts
+├── package.json
+├── tailwind.config.ts
+└── tsconfig.json
+```
+
+## 🚀 Getting Started
+
+### Prerequisites
+
+- Node.js
+- npm
+
+### Installation
+
+```bash
+git clone https://github.com/ramaneffect42/Matri-web.git
+cd Matri-web
+npm install
+```
+
+### Run locally
 
 ```bash
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Then open:
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+```text
+http://localhost:3000
+```
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+### Build for production
 
-## Learn More
+```bash
+npm run build
+npm run start
+```
 
-To learn more about Next.js, take a look at the following resources:
+## 🌐 Live Demo
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+[**matrilux.vercel.app**](https://matrilux.vercel.app)
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+## 🚧 Status
 
-## Deploy on Vercel
+This project is currently a work in progress. The repository primarily contains the web/product experience, with additional functionality intended to evolve alongside the project.
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+---
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+<p align="center">
+  🌸 <i>Technology designed around the maternal journey.</i>
+</p>
