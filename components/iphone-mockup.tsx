@@ -59,7 +59,7 @@ function DashboardScreen() {
     <div className="flex h-full w-full flex-1 flex-col space-y-2">
       <div className="w-full bg-transparent p-3 shadow-sm text-left">
         <p className="text-base leading-tight font-serif text-foreground">Welcome back,</p>
-        <h3 className="text-[22px] leading-none font-serif text-foreground">John Doe!</h3>
+        <h3 className="text-[22px] leading-none font-serif text-foreground">Jane Doe</h3>
       </div>
 
       <div className="w-full rounded-2xl border border-border/70 bg-card p-3 shadow-sm">
